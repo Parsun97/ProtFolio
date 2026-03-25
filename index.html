@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Parsun Kumar Patel - Software Engineer Portfolio | React, Node.js, ASP.NET Expert">
+    <title>Parsun Kumar Patel | Software Engineer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500&amp;display=swap');
+
+        :root {
+            --primary: #00f5ff;
+        }
+
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+
+        .tailwind-ready * {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #0a1729 0%, #1e1133 100%);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+            .nav-link:after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 3px;
+                bottom: -2px;
+                left: 0;
+                background: linear-gradient(to right, #00f5ff, #c026d3);
+            }
+
+            .nav-link:hover:after {
+                width: 100%;
+            }
+
+        .section-header {
+            position: relative;
+        }
+
+            .section-header:after {
+                content: '';
+                position: absolute;
+                width: 80px;
+                height: 4px;
+                background: linear-gradient(to right, #00f5ff, #c026d3);
+                bottom: -8px;
+                left: 0;
+                border-radius: 9999px;
+            }
+
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+            .project-card:hover {
+                transform: translateY(-12px) scale(1.03);
+                box-shadow: 0 25px 50px -12px rgb(0 245 255 / 0.3);
+            }
+
+        .glow {
+            animation: glow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 20px #00f5ff;
+            }
+
+            to {
+                text-shadow: 0 0 40px #c026d3, 0 0 60px #00f5ff;
+            }
+        }
+
+        .timeline-dot {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body class="tailwind-ready bg-[#0a1729] text-slate-200">
+    <!-- NAVBAR -->
+    <nav class="bg-[#0a1729]/90 backdrop-blur-lg border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="px-8 py-5 flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-x-3">
+                    <div class="w-9 h-9 bg-gradient-to-br from-[#00f5ff] to-[#c026d3] rounded-2xl flex items-center justify-center text-white font-bold text-2xl shadow-lg shadow-[#00f5ff]/50">
+                        PK
+                    </div>
+                    <h1 class="heading-font text-3xl tracking-tighter">Parsun Kumar</h1>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-x-10 text-lg font-medium">
+                    <a href="#home" onclick="smoothScrollTo('home')" class="nav-link text-slate-300 hover:text-white">Home</a>
+                    <a href="#about" onclick="smoothScrollTo('about')" class="nav-link text-slate-300 hover:text-white">About</a>
+                    <a href="#skills" onclick="smoothScrollTo('skills')" class="nav-link text-slate-300 hover:text-white">Skills</a>
+                    <a href="#experience" onclick="smoothScrollTo('experience')" class="nav-link text-slate-300 hover:text-white">Experience</a>
+                    <a href="#projects" onclick="smoothScrollTo('projects')" class="nav-link text-slate-300 hover:text-white">Projects</a>
+                    <a href="#education" onclick="smoothScrollTo('education')" class="nav-link text-slate-300 hover:text-white">Education</a>
+                </div>
+
+                <div class="flex items-center gap-x-4">
+                    <!-- LinkedIn -->
+                    <a href="https://linkedin.com" target="_blank"
+                       class="flex items-center gap-x-2 bg-white/10 hover:bg-white/20 text-white px-6 py-2.5 rounded-3xl text-sm font-semibold border border-white/20">
+                        <i class="fa-brands fa-linkedin text-[#00f5ff]"></i>
+                        <span>LinkedIn</span>
+                    </a>
+
+                    <!-- Download Resume -->
+                    <button onclick="downloadResume()"
+                            class="flex items-center gap-x-2 bg-gradient-to-r from-[#00f5ff] to-[#c026d3] hover:brightness-110 text-white px-8 py-2.5 rounded-3xl text-sm font-bold shadow-xl shadow-[#00f5ff]/40">
+                        <i class="fa-solid fa-download"></i>
+                        <span>Resume</span>
+                    </button>
+
+                    <!-- Mobile Hamburger -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden text-3xl text-white">
+                        <i id="hamburger-icon" class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden px-8 pb-6 border-t border-white/10">
+                <div class="flex flex-col gap-y-6 text-lg font-medium pt-6">
+                    <a href="#home" onclick="toggleMobileMenu();smoothScrollTo('home')" class="py-2">Home</a>
+                    <a href="#about" onclick="toggleMobileMenu();smoothScrollTo('about')" class="py-2">About</a>
+                    <a href="#skills" onclick="toggleMobileMenu();smoothScrollTo('skills')" class="py-2">Skills</a>
+                    <a href="#experience" onclick="toggleMobileMenu();smoothScrollTo('experience')" class="py-2">Experience</a>
+                    <a href="#projects" onclick="toggleMobileMenu();smoothScrollTo('projects')" class="py-2">Projects</a>
+                    <a href="#education" onclick="toggleMobileMenu();smoothScrollTo('education')" class="py-2">Education</a>
+                    <div class="pt-4 border-t border-white/10 flex flex-col gap-y-4">
+                        <a href="https://linkedin.com" target="_blank" class="flex justify-center items-center gap-x-3 bg-white/10 py-4 rounded-3xl">
+                            <i class="fa-brands fa-linkedin text-2xl"></i>
+                            <span class="font-semibold">Connect on LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero-bg min-h-screen flex items-center relative overflow-hidden">
+        <div class="max-w-screen-2xl mx-auto px-8 grid md:grid-cols-2 gap-12 items-center">
+            <!-- Left Content -->
+            <div class="pt-20 md:pt-0">
+                <div class="inline-flex items-center gap-x-2 bg-white/10 text-[#00f5ff] text-sm font-semibold px-6 py-3 rounded-3xl mb-6 backdrop-blur-md">
+                    <div class="w-2 h-2 bg-[#00f5ff] rounded-full animate-pulse"></div>
+                    OPEN TO OPPORTUNITIES • Karnal, Haryana
+                </div>
+
+                <h1 class="text-6xl md:text-7xl font-bold leading-none heading-font tracking-tighter mb-4 glow">
+                    PARSUN KUMAR<br>PATEL
+                </h1>
+
+                <h2 class="text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-[#00f5ff] via-[#c026d3] to-[#00f5ff] font-semibold mb-8">
+                    Software Engineer
+                </h2>
+
+                <p class="text-2xl text-slate-300 max-w-lg mb-10">
+                    2+ years building scalable ERP systems &amp; web apps with
+                    <span class="text-[#00f5ff]">React • Node.js • ASP.NET</span>
+                </p>
+
+                <div class="flex flex-wrap gap-4">
+                    <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })"
+                            class="px-10 py-5 rounded-3xl bg-white text-[#0a1729] hover:bg-[#00f5ff] hover:text-white font-bold text-xl flex items-center gap-x-3 group">
+                        Let's Connect
+                        <i class="fa-solid fa-arrow-right group-active:rotate-45"></i>
+                    </button>
+
+                    <a href="#projects" onclick="smoothScrollTo('projects')"
+                       class="px-10 py-5 rounded-3xl border-2 border-[#00f5ff] hover:bg-[#00f5ff]/10 text-[#00f5ff] font-bold text-xl flex items-center">
+                        Explore Projects
+                    </a>
+                </div>
+
+                <!-- Trust signals -->
+                <div class="flex items-center gap-x-8 mt-16 text-slate-400 text-sm">
+                    <div class="flex items-center gap-x-2">
+                        <i class="fa-solid fa-briefcase text-[#00f5ff]"></i>
+                        <span>Delivered ERP for 3+ Institutions</span>
+                    </div>
+                    <div class="flex items-center gap-x-2">
+                        <i class="fa-solid fa-code text-[#c026d3]"></i>
+                        <span>Full-Stack • GenAI Ready</span>
+                    </div>
+                    <div class="flex items-center gap-x-2">
+                        <i class="fa-solid fa-graduation-cap text-[#00f5ff]"></i>
+                        <span>BCA • DAV PG College</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Visual -->
+            <div class="relative hidden md:flex justify-center">
+                <div class="absolute -inset-10 bg-gradient-to-br from-[#00f5ff]/20 to-[#c026d3]/20 rounded-[4rem] rotate-12 blur-3xl"></div>
+
+                <!-- Floating profile card -->
+                <div class="relative bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl p-8 max-w-xs shadow-2xl">
+                    <div class="w-40 h-40 mx-auto bg-gradient-to-br from-[#00f5ff] to-[#c026d3] rounded-3xl flex items-center justify-center text-white text-8xl mb-6 shadow-inner">
+                        👨‍💻
+                    </div>
+                    <h3 class="text-center text-3xl heading-font mb-2">Parsun Kumar Patel</h3>
+                    <p class="text-center text-[#00f5ff] text-xl mb-8">Building the future, one line of code at a time</p>
+
+                    <!-- Live status -->
+                    <div class="flex justify-center items-center gap-x-3 text-sm bg-white/10 rounded-3xl py-3 px-6">
+                        <div class="w-3 h-3 bg-emerald-400 rounded-full animate-pulse"></div>
+                        Currently building next-gen ERP systems
+                    </div>
+                </div>
+
+                <!-- Floating badges -->
+                <div class="absolute -top-6 -left-6 bg-[#1e1133] text-[#00f5ff] px-6 py-3 rounded-2xl flex items-center gap-x-3 shadow-xl">
+                    <i class="fa-solid fa-rocket"></i>
+                    <span class="font-bold">2+ Years Exp</span>
+                </div>
+                <div class="absolute -bottom-8 right-8 bg-[#1e1133] text-[#c026d3] px-6 py-3 rounded-2xl flex items-center gap-x-3 shadow-xl rotate-12">
+                    <i class="fa-solid fa-database"></i>
+                    <span class="font-bold">SQL • MongoDB • Supabase</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 flex flex-col items-center text-[#00f5ff] text-sm font-medium">
+            <div class="mb-2">Scroll for magic</div>
+            <i class="fa-solid fa-chevron-down animate-bounce text-3xl"></i>
+        </div>
+    </section>
+
+    <!-- ABOUT / SUMMARY -->
+    <section id="about" class="py-24 bg-white/5">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="grid md:grid-cols-12 gap-16 items-center">
+                <div class="md:col-span-5">
+                    <h2 class="section-header text-5xl font-semibold heading-font mb-6">About Me</h2>
+                    <div class="text-2xl text-slate-300 leading-relaxed">
+                        Results-driven Software Engineer with <span class="text-[#00f5ff] font-bold">2+ years</span> of experience building scalable web applications and enterprise-grade ERP systems.
+                    </div>
+                    <p class="mt-8 text-lg text-slate-400">
+                        Specialized in modern full-stack development using React, Next.js, Node.js, and ASP.NET.
+                        Passionate about delivering real business value — I’ve automated operations for multiple educational institutions (PW, KV, Gurukul) through robust inventory, billing, and user management systems.
+                    </p>
+                    <div class="mt-12 flex gap-x-8 text-sm uppercase tracking-widest">
+                        <div>
+                            <span class="block text-[#00f5ff] text-4xl font-bold">15+</span>
+                            <span class="text-slate-400">Projects Delivered</span>
+                        </div>
+                        <div>
+                            <span class="block text-[#c026d3] text-4xl font-bold">3</span>
+                            <span class="text-slate-400">Educational Institutions</span>
+                        </div>
+                        <div>
+                            <span class="block text-[#00f5ff] text-4xl font-bold">∞</span>
+                            <span class="text-slate-400">Lines of clean code</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-7 bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-10">
+                    <h3 class="text-[#00f5ff] uppercase text-sm tracking-[2px] mb-8">My Mission</h3>
+                    <p class="text-3xl leading-tight">
+                        Turning complex business challenges into elegant, scalable digital solutions that actually get used.
+                    </p>
+                    <div class="mt-12 grid grid-cols-3 gap-6 text-center">
+                        <div class="bg-white/10 rounded-2xl p-6">
+                            <i class="fa-solid fa-laptop-code text-4xl text-[#00f5ff] mb-4"></i>
+                            <div class="font-semibold">Full-Stack Architect</div>
+                        </div>
+                        <div class="bg-white/10 rounded-2xl p-6">
+                            <i class="fa-solid fa-chart-line text-4xl text-[#c026d3] mb-4"></i>
+                            <div class="font-semibold">Performance Obsessed</div>
+                        </div>
+                        <div class="bg-white/10 rounded-2xl p-6">
+                            <i class="fa-solid fa-brain text-4xl text-[#00f5ff] mb-4"></i>
+                            <div class="font-semibold">Generative AI Ready</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="py-24">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <h2 class="section-header text-5xl font-semibold heading-font mb-16 text-center">Technical Arsenal</h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                <!-- Skill cards -->
+                <div class="bg-gradient-to-br from-[#00f5ff]/10 to-transparent border border-[#00f5ff]/30 rounded-3xl p-8 text-center hover:border-[#00f5ff]">
+                    <i class="fa-brands fa-react text-6xl mb-6 text-[#00f5ff]"></i>
+                    <h4 class="text-xl font-semibold mb-1">React.js / Next.js</h4>
+                    <p class="text-slate-400">Frontend Mastery</p>
+                </div>
+                <div class="bg-gradient-to-br from-[#c026d3]/10 to-transparent border border-[#c026d3]/30 rounded-3xl p-8 text-center hover:border-[#c026d3]">
+                    <i class="fa-brands fa-node-js text-6xl mb-6 text-[#c026d3]"></i>
+                    <h4 class="text-xl font-semibold mb-1">Node.js</h4>
+                    <p class="text-slate-400">Backend Power</p>
+                </div>
+                <div class="bg-gradient-to-br from-[#00f5ff]/10 to-transparent border border-[#00f5ff]/30 rounded-3xl p-8 text-center hover:border-[#00f5ff]">
+                    <i class="fa-solid fa-cube text-6xl mb-6 text-[#00f5ff]"></i>
+                    <h4 class="text-xl font-semibold mb-1">ASP.NET MVC</h4>
+                    <p class="text-slate-400">Enterprise Backend</p>
+                </div>
+                <div class="bg-gradient-to-br from-[#c026d3]/10 to-transparent border border-[#c026d3]/30 rounded-3xl p-8 text-center hover:border-[#c026d3]">
+                    <i class="fa-solid fa-database text-6xl mb-6 text-[#c026d3]"></i>
+                    <h4 class="text-xl font-semibold mb-1">SQL Server • MongoDB • Supabase</h4>
+                    <p class="text-slate-400">Data Layer</p>
+                </div>
+                <div class="bg-gradient-to-br from-[#00f5ff]/10 to-transparent border border-[#00f5ff]/30 rounded-3xl p-8 text-center hover:border-[#00f5ff]">
+                    <i class="fa-solid fa-code text-6xl mb-6 text-[#00f5ff]"></i>
+                    <h4 class="text-xl font-semibold mb-1">JavaScript • Python • C#</h4>
+                    <p class="text-slate-400">Languages</p>
+                </div>
+                <div class="bg-gradient-to-br from-[#c026d3]/10 to-transparent border border-[#c026d3]/30 rounded-3xl p-8 text-center hover:border-[#c026d3]">
+                    <i class="fa-solid fa-wand-magic-sparkles text-6xl mb-6 text-[#c026d3]"></i>
+                    <h4 class="text-xl font-semibold mb-1">Generative AI</h4>
+                    <p class="text-slate-400">Future Ready</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12 text-slate-400 text-sm flex items-center justify-center gap-x-8">
+                <div class="flex items-center"><i class="fa-solid fa-check mr-2"></i> REST APIs</div>
+                <div class="flex items-center"><i class="fa-solid fa-check mr-2"></i> MVC Architecture</div>
+                <div class="flex items-center"><i class="fa-solid fa-check mr-2"></i> Git • Linux • Power BI</div>
+                <div class="flex items-center"><i class="fa-solid fa-check mr-2"></i> ADO.NET • jQuery</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="py-24 bg-white/5">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <h2 class="section-header text-5xl font-semibold heading-font mb-16">Professional Journey</h2>
+
+            <div class="space-y-12">
+                <!-- Job 1 -->
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-56 text-right">
+                        <div class="inline-block bg-[#00f5ff]/10 text-[#00f5ff] px-6 py-1 rounded-3xl text-sm font-semibold">Jan 2024 – Present</div>
+                        <h3 class="text-2xl font-semibold mt-4">Software Engineer</h3>
+                        <p class="text-[#00f5ff]">Onmouseclick, Karnal</p>
+                    </div>
+                    <div class="flex-1 bg-white/10 border border-white/10 rounded-3xl p-8 relative">
+                        <div class="timeline-dot absolute -left-3 top-8 w-6 h-6 bg-[#00f5ff] rounded-full border-4 border-[#0a1729]"></div>
+                        <ul class="space-y-6 text-lg">
+                            <li class="flex gap-x-4"><i class="fa-solid fa-check text-[#00f5ff] mt-1"></i> Developed &amp; deployed full-scale ERP used by PW, KV &amp; Gurukul institutions</li>
+                            <li class="flex gap-x-4"><i class="fa-solid fa-check text-[#00f5ff] mt-1"></i> Built Inventory, Billing, Student &amp; Staff Management modules</li>
+                            <li class="flex gap-x-4"><i class="fa-solid fa-check text-[#00f5ff] mt-1"></i> Scalable ASP.NET + SQL Server architecture with data security</li>
+                            <li class="flex gap-x-4"><i class="fa-solid fa-check text-[#00f5ff] mt-1"></i> React.js responsive UI &amp; optimized database queries</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-56 text-right">
+                        <div class="inline-block bg-[#c026d3]/10 text-[#c026d3] px-6 py-1 rounded-3xl text-sm font-semibold">Mar 2022 – Mar 2023</div>
+                        <h3 class="text-2xl font-semibold mt-4">Coding Instructor &amp; Developer</h3>
+                        <p class="text-[#c026d3]">Kalpana Chawla Institute</p>
+                    </div>
+                    <div class="flex-1 bg-white/10 border border-white/10 rounded-3xl p-8 relative">
+                        <div class="timeline-dot absolute -left-3 top-8 w-6 h-6 bg-[#c026d3] rounded-full border-4 border-[#0a1729]"></div>
+                        <ul class="space-y-6 text-lg">
+                            <li class="flex gap-x-4"><i class="fa-solid fa-check text-[#c026d3] mt-1"></i> Trained 100+ students in full-stack web development</li>
+                            <li class="flex gap-x-4"><i class="fa-solid fa-check text-[#c026d3] mt-1"></i> Designed project-based curriculum with real-world applications</li>
+                            <li class="flex gap-x-4"><i class="fa-solid fa-check text-[#c026d3] mt-1"></i> Built demo apps &amp; created learning documentation</li>
+                            <li class="flex gap-x-4"><i class="fa-solid fa-check text-[#c026d3] mt-1"></i> Mentored students on industry-relevant projects</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="py-24">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <h2 class="section-header text-5xl font-semibold heading-font mb-6 text-center">Featured Projects</h2>
+            <p class="text-center text-slate-400 text-xl max-w-2xl mx-auto mb-16">From geo-services to rental marketplaces — each project showcases clean architecture and user-first design</p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card bg-white/10 border border-white/10 rounded-3xl overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-[#00f5ff] to-[#c026d3]"></div>
+                    <div class="p-8">
+                        <div class="uppercase text-xs tracking-widest text-[#00f5ff] mb-3">Geo-based Platform</div>
+                        <h3 class="text-2xl font-semibold mb-4">Helper</h3>
+                        <p class="text-slate-300 mb-8">Location-based marketplace connecting users for local help, errands, and skilled services.</p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="text-xs px-4 py-1 bg-white/10 rounded-3xl">React</span>
+                            <span class="text-xs px-4 py-1 bg-white/10 rounded-3xl">Node.js</span>
+                            <span class="text-xs px-4 py-1 bg-white/10 rounded-3xl">MongoDB</span>
+                            <span class="text-xs px-4 py-1 bg-white/10 rounded-3xl">Geolocation API</span>
+                        </div>
+                        <button onclick="viewProject(1)" class="w-full py-4 border border-[#00f5ff] text-[#00f5ff] rounded-3xl flex items-center justify-center gap-x-2 hover:bg-[#00f5ff] hover:text-white">
+                            <span>View Live Demo</span>
+                            <i class="fa-solid fa-external-link-alt"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card bg-white/10 border border-white/10 rounded-3xl overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-[#c026d3] to-[#00f5ff]"></div>
+                    <div class="p-8">
+                        <div class="uppercase text-xs tracking-widest text-[#c026d3] mb-3">Rental Marketplace</div>
+                        <h3 class="text-2xl font-semibold mb-4">RentEase</h3>
+                        <p class="text-slate-300 mb-8">Full-stack rental platform with booking, real-time chat, payments &amp; location search.</p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="text-xs px-4 py-1 bg-white/10 rounded-3xl">Next.js</span>
+                            <span class="text-xs px-4 py-1 bg-white/10 rounded-3xl">Supabase</span>
+                            <span class="text-xs px-4 py-1 bg-white/10 rounded-3xl">Stripe</span>
+                            <span class="text-xs px-4 py-1 bg-white/10 rounded-3xl">WebSocket</span>
+                        </div>
+                        <button onclick="viewProject(2)" class="w-full py-4 border border-[#c026d3] text-[#c026d3] rounded-3xl flex items-center justify-center gap-x-2 hover:bg-[#c026d3] hover:text-white">
+                            <span>View Live Demo</span>
+                            <i class="fa-solid fa-external-link-alt"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card bg-white/10 border border-white/10 rounded-3xl overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-[#00f5ff] to-[#c026d3]"></div>
+                    <div class="p-8">
+                        <div class="uppercase text-xs tracking-widest text-[#00f5ff] mb-3">Project Management</div>
+                        <h3 class="text-2xl font-semibold mb-4">BitBuilder</h3>
+                        <p class="text-slate-300 mb-8">Task assignment, progress tracking, team workflows &amp; real-time collaboration.</p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="text-xs px-4 py-1 bg-white/10 rounded-3xl">ASP.NET</span>
+                            <span class="text-xs px-4 py-1 bg-white/10 rounded-3xl">SQL Server</span>
+                            <span class="text-xs px-4 py-1 bg-white/10 rounded-3xl">React</span>
+                            <span class="text-xs px-4 py-1 bg-white/10 rounded-3xl">MVC</span>
+                        </div>
+                        <button onclick="viewProject(3)" class="w-full py-4 border border-[#00f5ff] text-[#00f5ff] rounded-3xl flex items-center justify-center gap-x-2 hover:bg-[#00f5ff] hover:text-white">
+                            <span>View Live Demo</span>
+                            <i class="fa-solid fa-external-link-alt"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card bg-white/10 border border-white/10 rounded-3xl overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-[#c026d3] to-[#00f5ff]"></div>
+                    <div class="p-8">
+                        <div class="uppercase text-xs tracking-widest text-[#c026d3] mb-3">Utility Platform</div>
+                        <h3 class="text-2xl font-semibold mb-4">Calcify</h3>
+                        <p class="text-slate-300 mb-8">Multi-calculator platform for finance, math &amp; utility with modular architecture.</p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="text-xs px-4 py-1 bg-white/10 rounded-3xl">React</span>
+                            <span class="text-xs px-4 py-1 bg-white/10 rounded-3xl">Tailwind</span>
+                            <span class="text-xs px-4 py-1 bg-white/10 rounded-3xl">Modular Design</span>
+                        </div>
+                        <button onclick="viewProject(4)" class="w-full py-4 border border-[#c026d3] text-[#c026d3] rounded-3xl flex items-center justify-center gap-x-2 hover:bg-[#c026d3] hover:text-white">
+                            <span>View Live Demo</span>
+                            <i class="fa-solid fa-external-link-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="py-24 bg-white/5">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <h2 class="section-header text-5xl font-semibold heading-font mb-16 text-center">Education</h2>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-gradient-to-br from-[#00f5ff]/5 to-transparent border border-[#00f5ff]/30 rounded-3xl p-10">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-3xl font-semibold">Bachelor of Computer Applications (BCA)</h3>
+                            <p class="text-[#00f5ff] mt-3 text-xl">DAV PG College, Karnal</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="px-5 py-2 bg-white/10 text-sm rounded-3xl">2022 – 2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-[#c026d3]/5 to-transparent border border-[#c026d3]/30 rounded-3xl p-10">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-3xl font-semibold">12th Standard</h3>
+                            <p class="text-[#c026d3] mt-3 text-xl">Kendriya Vidyalaya</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="px-5 py-2 bg-white/10 text-sm rounded-3xl">2019 – 2020</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-24">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="bg-gradient-to-br from-[#00f5ff]/10 via-[#c026d3]/10 to-transparent border border-white/10 rounded-3xl p-16">
+                <div class="max-w-2xl mx-auto text-center">
+                    <h2 class="text-6xl heading-font font-semibold mb-4">Let's build something incredible together</h2>
+                    <p class="text-2xl text-slate-300 mb-12">Currently available for full-time roles &amp; freelance opportunities</p>
+
+                    <form id="contact-form" onsubmit="handleSubmit(event)" class="space-y-8">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <input type="text" id="name" placeholder="Your name" required
+                                   class="bg-white/10 border border-white/20 focus:border-[#00f5ff] rounded-3xl px-8 py-6 text-lg outline-none">
+                            <input type="email" id="email" placeholder="your@email.com" required
+                                   class="bg-white/10 border border-white/20 focus:border-[#00f5ff] rounded-3xl px-8 py-6 text-lg outline-none">
+                        </div>
+                        <textarea id="message" rows="6" placeholder="Tell me about your project or opportunity..." required
+                                  class="w-full bg-white/10 border border-white/20 focus:border-[#00f5ff] rounded-3xl px-8 py-6 text-lg outline-none"></textarea>
+
+                        <button type="submit"
+                                class="w-full md:w-auto mx-auto flex items-center justify-center gap-x-4 bg-gradient-to-r from-[#00f5ff] to-[#c026d3] hover:brightness-110 px-16 py-7 text-2xl font-bold rounded-3xl">
+                            SEND MESSAGE
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#0a1729] border-t border-white/10 py-12">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-y-6">
+                <div class="flex items-center gap-x-3">
+                    <div class="w-8 h-8 bg-gradient-to-br from-[#00f5ff] to-[#c026d3] rounded-2xl flex items-center justify-center text-white">PK</div>
+                    <p class="text-slate-400">© 2026 Parsun Kumar Patel. All rights reserved.</p>
+                </div>
+
+                <div class="flex gap-x-8 text-2xl text-slate-400">
+                    <a href="#" class="hover:text-[#00f5ff]"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" class="hover:text-[#00f5ff]"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="hover:text-[#00f5ff]"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+
+                <div class="text-slate-400 text-sm flex items-center gap-x-2">
+                    Made with
+                    <i class="fa-solid fa-heart text-red-500"></i>
+                    and a lot of coffee in Karnal, Haryana
+                </div>
+
+                <div onclick="window.location.reload()" class="cursor-pointer text-xs flex items-center gap-x-2 text-[#00f5ff]">
+                    <i class="fa-solid fa-rotate"></i>
+                    REFRESH THE MAGIC
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast -->
+    <div id="toast" onclick="this.classList.add('hidden')"
+         class="hidden fixed bottom-8 right-8 bg-gradient-to-r from-[#00f5ff] to-[#c026d3] text-white px-8 py-5 rounded-3xl shadow-2xl flex items-center gap-x-3 text-lg font-medium">
+        <i class="fa-solid fa-check-circle"></i>
+        <span id="toast-text"></span>
+    </div>
+
+    <script>
+        /**
+         * Portfolio Website for Parsun Kumar Patel
+         * Built with love using pure HTML + Tailwind + JS
+         * Eye-catching professional design with advanced gradients & animations
+         */
+
+        function initializeTailwind() {
+            return {
+                config(userConfig = {}) {
+                    return {
+                        configUser: userConfig,
+                        theme: {
+                            extend: {
+                                colors: {
+                                    primary: '#00f5ff'
+                                }
+                            }
+                        }
+                    }
+                },
+                theme: {
+                    extend: {},
+                },
+            }
+        }
+
+        function init() {
+            // Tailwind script
+            const config = initializeTailwind()
+            return {
+                configUser: config.config,
+                theme: config.theme,
+            }
+        }
+
+        // Run Tailwind
+        init()
+
+        // Smooth scroll helper
+        function smoothScrollTo(section) {
+            const el = document.getElementById(section)
+            if (el) {
+                el.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                })
+            }
+        }
+
+        // Mobile menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu')
+            const icon = document.getElementById('hamburger-icon')
+
+            if (menu.classList.contains('hidden')) {
+                menu.style.display = 'block'
+                icon.classList.replace('fa-bars', 'fa-xmark')
+            } else {
+                menu.style.display = 'none'
+                icon.classList.replace('fa-xmark', 'fa-bars')
+            }
+        }
+
+        // Fake project modal
+        function viewProject(id) {
+            const messages = {
+                1: "🚀 Helper Live Demo → Location matching + real-time chat is ready!",
+                2: "🏠 RentEase Live → Book anything, chat instantly, pay securely!",
+                3: "📊 BitBuilder Live → Team collaboration dashboard with live updates",
+                4: "🔢 Calcify Live → 20+ calculators with modular architecture"
+            }
+
+            const toast = document.getElementById('toast')
+            const text = document.getElementById('toast-text')
+
+            text.textContent = messages[id] || "Project opened in new tab (demo)"
+            toast.style.display = 'flex'
+
+            // Auto hide in 5 seconds
+            setTimeout(() => {
+                if (toast.style.display !== 'none') toast.classList.add('hidden')
+            }, 5000)
+
+            // In real world this would open a modal or new tab
+            console.log('%c🔥 Project ' + id + ' opened!', 'background:#00f5ff;color:#0a1729;padding:4px 8px;border-radius:4px;font-weight:bold')
+        }
+
+        // Contact form handler
+        function handleSubmit(e) {
+            e.preventDefault()
+
+            const toast = document.getElementById('toast')
+            const text = document.getElementById('toast-text')
+
+            text.innerHTML = `✅ Message sent successfully!<br><span class="text-sm opacity-75">Parsun will reply within 24 hours</span>`
+            toast.style.display = 'flex'
+
+            // Reset form
+            e.target.reset()
+
+            // Auto hide
+            setTimeout(() => {
+                toast.classList.add('hidden')
+            }, 6000)
+
+            console.log('%c📧 Contact form submitted (simulated)', 'color:#c026d3;font-weight:bold')
+        }
+
+        // Download resume (simulates PDF download)
+        function downloadResume() {
+            const toast = document.getElementById('toast')
+            const text = document.getElementById('toast-text')
+
+            // Simulate PDF download
+            text.textContent = '📄 Resume (5).pdf downloaded!'
+            toast.style.display = 'flex'
+
+            // Create a fake download link
+            const link = document.createElement('a')
+            link.href = '#' // In production, replace with actual hosted resume URL
+            link.download = 'Parsun_Kumar_Patel_Resume.pdf'
+            document.body.appendChild(link)
+            link.click()
+            document.body.removeChild(link)
+
+            setTimeout(() => toast.classList.add('hidden'), 3000)
+
+            console.log('%c📥 Resume downloaded – thank you!', 'background:#c026d3;color:white;padding:2px 6px')
+        }
+
+        // Keyboard shortcut: press "/" to focus contact
+        document.addEventListener('keydown', function (e) {
+            if (e.key === '/' && document.getElementById('contact')) {
+                e.preventDefault()
+                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })
+            }
+        })
+
+        console.log('%c👋 Welcome to Parsun Kumar Patel’s Portfolio! Built with advanced Tailwind gradients, smooth animations & full JS functionality.', 'color:#00f5ff;font-size:13px;font-family:monospace')
+    </script>
+</body>
+</html>
