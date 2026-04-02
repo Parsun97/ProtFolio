@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Real-time Features with Supabase + React | Parsun Kumar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500&display=swap');
+
+        .tailwind-ready * {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+    </style>
+</head>
+<body class="tailwind-ready bg-[#0a1729] text-slate-200">
+
+    <nav class="bg-[#0a1729]/90 backdrop-blur-lg border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto px-8 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-x-3">
+                <div class="w-9 h-9 bg-gradient-to-br from-[#00f5ff] to-[#c026d3] rounded-2xl flex items-center justify-center text-white font-bold text-2xl">PK</div>
+                <h1 class="heading-font text-3xl tracking-tighter">Parsun Kumar</h1>
+            </div>
+            <a href="blog.html" class="text-sm font-medium px-6 py-3 bg-white/10 hover:bg-white/20 rounded-3xl">← Back to Blog</a>
+        </div>
+    </nav>
+
+    <article class="max-w-3xl mx-auto px-8 py-16">
+        <div class="mb-12">
+            <span class="text-[#c026d3] font-semibold">FULL-STACK • March 15, 2026 • 7 min read</span>
+            <h1 class="text-5xl heading-font font-bold leading-tight mt-6">Building Real-time Features with Supabase + React</h1>
+        </div>
+
+        <div class="prose prose-invert max-w-none blog-content text-lg">
+            <p>In RentEase, users needed instant chat and live booking status updates. Supabase made this incredibly simple.</p>
+
+            <h2 class="text-3xl font-semibold mt-12 mb-6">Why Supabase?</h2>
+            <p>Supabase combines PostgreSQL, Authentication, Realtime, and Storage in one platform — basically Firebase but open source and SQL-based.</p>
+
+            <h2 class="text-3xl font-semibold mt-12 mb-6">Real-time Implementation</h2>
+            <p>Using Supabase Realtime subscriptions with React hooks, I was able to show live messages and booking status without refreshing the page.</p>
+
+            <div class="bg-white/10 p-8 rounded-3xl my-10">
+                <p class="font-mono text-sm text-[#00f5ff]">const channel = supabase.channel('bookings').on('postgres_changes', ...)</p>
+            </div>
+
+            <p>The best part? It took less than 50 lines of code to get production-ready real-time functionality.</p>
+        </div>
+
+        <div class="mt-16">
+            <a href="blog.html" class="px-8 py-4 bg-white/10 hover:bg-white/20 rounded-3xl font-medium">← Back to All Blogs</a>
+        </div>
+    </article>
+
+    <footer class="bg-[#0a1729] border-t border-white/10 py-12 text-center text-slate-400 text-sm">
+        © 2026 Parsun Kumar Patel
+    </footer>
+</body>
+</html>

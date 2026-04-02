@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog | Parsun Kumar Patel - Software Engineer">
+    <title>Blog | Parsun Kumar Patel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500&display=swap');
+
+        .tailwind-ready * {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #0a1729 0%, #1e1133 100%);
+        }
+
+        .section-header:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #00f5ff, #c026d3);
+            bottom: -8px;
+            left: 0;
+            border-radius: 9999px;
+        }
+
+        .blog-content p {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body class="tailwind-ready bg-[#0a1729] text-slate-200">
+
+    <!-- NAVBAR -->
+    <nav class="bg-[#0a1729]/90 backdrop-blur-lg border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto px-8 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-x-3">
+                <div class="w-9 h-9 bg-gradient-to-br from-[#00f5ff] to-[#c026d3] rounded-2xl flex items-center justify-center text-white font-bold text-2xl">PK</div>
+                <h1 class="heading-font text-3xl tracking-tighter">Parsun Kumar</h1>
+            </div>
+            <div class="hidden md:flex items-center gap-x-10 text-lg font-medium">
+                <a href="index.html" class="nav-link text-slate-300 hover:text-white">Home</a>
+                <a href="index.html#about" class="nav-link text-slate-300 hover:text-white">About</a>
+                <a href="index.html#skills" class="nav-link text-slate-300 hover:text-white">Skills</a>
+                <a href="index.html#projects" class="nav-link text-slate-300 hover:text-white">Projects</a>
+                <a href="blog.html" class="text-[#00f5ff] font-semibold">Blog</a>
+            </div>
+            <a href="index.html" class="text-sm font-medium px-6 py-3 bg-white/10 hover:bg-white/20 rounded-3xl">← Back to Portfolio</a>
+        </div>
+    </nav>
+
+    <!-- BLOG HERO -->
+    <section class="hero-bg py-24">
+        <div class="max-w-screen-2xl mx-auto px-8 text-center">
+            <h1 class="text-6xl md:text-7xl heading-font font-bold tracking-tighter mb-6">Blog</h1>
+            <p class="text-2xl text-slate-400 max-w-2xl mx-auto">
+                Writing about full-stack development, ERP systems, career growth, and modern web technologies.
+            </p>
+        </div>
+    </section>
+
+    <!-- ALL BLOGS -->
+    <section class="py-24">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10" id="blog-container"></div>
+        </div>
+    </section>
+
+    <script>
+        const blogPosts = [
+            {
+                id: 1,
+                slug: "aspnet-erp-systems",
+                title: "Why I Chose ASP.NET for Enterprise ERP Systems",
+                date: "March 28, 2026",
+                readTime: "5 min read",
+                excerpt: "Exploring the performance, security, and scalability advantages of ASP.NET Core when building large-scale ERP platforms for educational institutions.",
+                category: "Architecture",
+                color: "#00f5ff",
+                emoji: "🧠"
+            },
+            {
+                id: 2,
+                slug: "realtime-supabase-react",
+                title: "Building Real-time Features with Supabase + React",
+                date: "March 15, 2026",
+                readTime: "7 min read",
+                excerpt: "How I implemented real-time chat, notifications, and live updates in RentEase using Supabase Realtime and React.",
+                category: "Full-Stack",
+                color: "#c026d3",
+                emoji: "⚡"
+            },
+            {
+                id: 3,
+                slug: "instructor-to-engineer-journey",
+                title: "From Instructor to Full-Stack Engineer: My Journey",
+                date: "March 5, 2026",
+                readTime: "4 min read",
+                excerpt: "How teaching 100+ students helped me become a better developer and land my first Software Engineer role.",
+                category: "Career",
+                color: "#00f5ff",
+                emoji: "🚀"
+            },
+            {
+                id: 4,
+                slug: "optimizing-database-queries",
+                title: "Optimizing Database Queries in Large ERP Systems",
+                date: "February 20, 2026",
+                readTime: "6 min read",
+                excerpt: "Practical techniques I used to reduce query time from 8 seconds to under 300ms in production ERP environments.",
+                category: "Performance",
+                color: "#c026d3",
+                emoji: "📊"
+            }
+        ];
+
+        function renderBlogs() {
+            const container = document.getElementById('blog-container');
+            container.innerHTML = blogPosts.map(post => `
+                    <div class="bg-white/10 border border-white/10 rounded-3xl overflow-hidden hover:border-[${post.color}]/50 transition-all group">
+                        <div class="h-56 bg-gradient-to-br from-[${post.color}]/10 to-transparent flex items-center justify-center text-7xl">
+                            ${post.emoji}
+                        </div>
+                        <div class="p-8">
+                            <div class="flex items-center gap-x-3 text-xs text-slate-400 mb-4">
+                                <span>${post.date}</span>
+                                <span class="w-1 h-1 bg-slate-400 rounded-full"></span>
+                                <span>${post.readTime}</span>
+                            </div>
+                            <h3 class="text-2xl font-semibold leading-tight mb-4 group-hover:text-[${post.color}] transition-colors">
+                                ${post.title}
+                            </h3>
+                            <p class="text-slate-400 line-clamp-4 mb-8">${post.excerpt}</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs px-5 py-2 bg-white/10 rounded-3xl">${post.category}</span>
+                                <a href="${post.slug}.html"
+                                   class="text-[#00f5ff] font-medium flex items-center gap-x-2 hover:gap-x-3 transition-all">
+                                    Read Full Article →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+        }
+
+        window.onload = renderBlogs;
+    </script>
+
+    <footer class="bg-[#0a1729] border-t border-white/10 py-12">
+        <div class="max-w-screen-2xl mx-auto px-8 text-center text-slate-400 text-sm">
+            © 2026 Parsun Kumar Patel • Made with ❤️ in Karnal, Haryana
+        </div>
+    </footer>
+</body>
+</html>

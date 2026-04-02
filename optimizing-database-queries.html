@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimizing Database Queries in Large ERP Systems | Parsun Kumar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500&display=swap');
+
+        .tailwind-ready * {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+    </style>
+</head>
+<body class="tailwind-ready bg-[#0a1729] text-slate-200">
+
+    <nav class="bg-[#0a1729]/90 backdrop-blur-lg border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto px-8 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-x-3">
+                <div class="w-9 h-9 bg-gradient-to-br from-[#00f5ff] to-[#c026d3] rounded-2xl flex items-center justify-center text-white font-bold text-2xl">PK</div>
+                <h1 class="heading-font text-3xl tracking-tighter">Parsun Kumar</h1>
+            </div>
+            <a href="blog.html" class="text-sm font-medium px-6 py-3 bg-white/10 hover:bg-white/20 rounded-3xl">← Back to Blog</a>
+        </div>
+    </nav>
+
+    <article class="max-w-3xl mx-auto px-8 py-16">
+        <div class="mb-12">
+            <span class="text-[#c026d3] font-semibold">PERFORMANCE • February 20, 2026 • 6 min read</span>
+            <h1 class="text-5xl heading-font font-bold leading-tight mt-6">Optimizing Database Queries in Large ERP Systems</h1>
+        </div>
+
+        <div class="prose prose-invert max-w-none blog-content text-lg">
+            <p>One of the biggest challenges in the ERP project was slow reporting queries during peak admission season.</p>
+
+            <h2 class="text-3xl font-semibold mt-12 mb-6">Techniques That Worked</h2>
+            <ul class="list-disc pl-6 space-y-4 text-slate-300">
+                <li>Proper indexing on frequently filtered columns</li>
+                <li>Using Dapper for complex reporting instead of EF Core</li>
+                <li>Caching frequently accessed data with Redis (planned next)</li>
+                <li>Implementing pagination everywhere</li>
+            </ul>
+
+            <p class="mt-10">Result: Reduced average query time from **8 seconds** to **under 300ms**.</p>
+        </div>
+
+        <div class="mt-16">
+            <a href="blog.html" class="px-8 py-4 bg-white/10 hover:bg-white/20 rounded-3xl font-medium">← Back to All Blogs</a>
+        </div>
+    </article>
+
+    <footer class="bg-[#0a1729] border-t border-white/10 py-12 text-center text-slate-400 text-sm">
+        © 2026 Parsun Kumar Patel
+    </footer>
+</body>
+</html>
