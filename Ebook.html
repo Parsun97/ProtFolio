@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Digital Library | Parsun Kumar Patel - Software Engineer">
+    <title>Library | Parsun Kumar Patel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+        .tailwind-ready * {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .library-bg {
+            background: linear-gradient(135deg, #0a0f1c 0%, #1a1428 100%);
+        }
+
+        .book-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: perspective(1000px) rotateY(8deg);
+        }
+
+            .book-card:hover {
+                transform: perspective(1000px) rotateY(0deg) translateY(-12px) scale(1.03);
+                box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+            }
+
+        .book-cover {
+            background-size: cover;
+            background-position: center;
+            box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.6);
+        }
+    </style>
+</head>
+<body class="tailwind-ready bg-[#0a0f1c] text-slate-200">
+
+    <!-- NAVBAR -->
+    <nav class="bg-[#0a0f1c]/90 backdrop-blur-lg border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto px-8 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-x-3">
+                <div class="w-9 h-9 bg-gradient-to-br from-[#00f5ff] to-[#c026d3] rounded-2xl flex items-center justify-center text-white font-bold text-2xl">PK</div>
+                <h1 class="heading-font text-3xl tracking-tighter">Parsun Kumar</h1>
+            </div>
+            <div class="hidden md:flex items-center gap-x-10 text-lg font-medium">
+                <a href="index.html" class="nav-link text-slate-300 hover:text-white">Home</a>
+                <a href="index.html#about" class="nav-link text-slate-300 hover:text-white">About</a>
+                <a href="index.html#projects" class="nav-link text-slate-300 hover:text-white">Projects</a>
+                <a href="library.html" class="text-[#00f5ff] font-semibold">Library</a>
+            </div>
+            <a href="index.html" class="text-sm font-medium px-6 py-3 bg-white/10 hover:bg-white/20 rounded-3xl">← Back to Portfolio</a>
+        </div>
+    </nav>
+
+    <!-- LIBRARY HERO -->
+    <section class="library-bg py-28 relative overflow-hidden">
+        <div class="max-w-screen-2xl mx-auto px-8 text-center relative z-10">
+            <div class="inline-flex items-center gap-3 px-6 py-2 bg-white/5 backdrop-blur-md rounded-full border border-white/10 mb-6">
+                <i class="fa-solid fa-book-open text-[#00f5ff]"></i>
+                <span class="uppercase tracking-[3px] text-sm font-medium">My Digital Library</span>
+            </div>
+
+            <h1 class="text-6xl md:text-7xl heading-font font-bold tracking-tighter mb-6">
+                Knowledge <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00f5ff] to-[#c026d3]">Library</span>
+            </h1>
+            <p class="text-2xl text-slate-400 max-w-2xl mx-auto">
+                A curated collection of my writings on software engineering, system design, career, and life lessons.
+            </p>
+        </div>
+    </section>
+
+    <!-- LIBRARY SECTION -->
+    <section class="py-20">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="flex items-center justify-between mb-12">
+                <h2 class="text-4xl heading-font font-semibold flex items-center gap-4">
+                    <span class="text-[#00f5ff]">📚</span>
+                    All Writings
+                </h2>
+                <div class="text-slate-400 text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-sort"></i>
+                    Sorted by Latest
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="library-container"></div>
+        </div>
+    </section>
+
+    <script>
+        const blogPosts = [
+            {
+                id: 1,
+                slug: " ",
+                title: "Get Your First Client In 30 Days",
+                date: "March 28, 2026",
+                readTime: "5 min read",
+                excerpt: "Struggling to earn online? This practical guide will show you exactly how to get your first client, even if you're a beginner. ",
+                category: "Business",
+                color: "#00f5ff",
+                coverImage: "clientCover.jpg",   // Replace with your real image
+                pdfUrl: "client.pdf"
+            }
+             
+        ];
+
+        function renderLibrary() {
+            const container = document.getElementById('library-container');
+            container.innerHTML = blogPosts.map(post => `
+                    <div class="book-card group bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:border-[${post.color}]/40">
+                        <!-- Book Cover -->
+                        <div class="relative h-80 book-cover"
+                             style="background-image: url('${post.coverImage}');">
+
+                            <!-- Overlay for better text readability -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+
+                            <!-- Spine Effect -->
+                            <div class="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-black/70 to-transparent"></div>
+
+                            <!-- Title on Cover -->
+                            <div class="absolute bottom-0 left-0 right-0 p-6 text-center">
+                                <h3 class="text-lg font-semibold leading-tight text-white line-clamp-3 drop-shadow-lg">
+                                    ${post.title}
+                                </h3>
+                            </div>
+
+                            <!-- Book shine effect -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                        </div>
+
+                        <!-- Book Info -->
+                        <div class="p-8">
+                            <div class="flex items-center gap-x-3 text-xs text-slate-400 mb-4">
+                                <span>${post.date}</span>
+                                <span class="w-1 h-1 bg-slate-400 rounded-full"></span>
+                                <span>${post.readTime}</span>
+                            </div>
+
+                            <p class="text-slate-400 text-sm line-clamp-3 mb-6 min-h-[66px]">
+                                ${post.excerpt}
+                            </p>
+
+                            <div class="flex items-center justify-between gap-3">
+                                <span class="text-xs uppercase tracking-widest px-4 py-2 bg-white/10 rounded-2xl text-slate-300">
+                                    ${post.category}
+                                </span>
+
+                                <!-- Download Button -->
+                                <a href="${post.pdfUrl}"
+                                   download="${post.slug}.pdf"
+                                   class="download-btn flex-1 text-center px-5 py-3 bg-white/10 hover:bg-[#00f5ff] text-white hover:text-[#0a0f1c] rounded-2xl font-medium flex items-center justify-center gap-2 text-sm transition-all">
+                                    <i class="fa-solid fa-download"></i>
+                                    Download PDF
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+        }
+
+        window.onload = renderLibrary;
+    </script>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#0a0f1c] border-t border-white/10 py-12">
+        <div class="max-w-screen-2xl mx-auto px-8 text-center text-slate-400 text-sm">
+            © 2026 Parsun Kumar Patel • My Personal Digital Library • Karnal, Haryana
+        </div>
+    </footer>
+</body>
+</html>
